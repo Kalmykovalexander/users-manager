@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Users
+{% endblock %}
+
+{% block content %}
+  <!-- Button add user -->
+  <div class='container'>
+    <div class="align-right">
+        <a class="custom" href="{% url 'add user' %}">Add user</a>
+    </div>
+  </div>
+  <!-- Table users -->
+  <div class="divTable greyGridTable">
+    <div class="divTableHeading">
+      <div class="divTableRow">
+        <div class="divTableHead">ID</div>
+        <div class="divTableHead">Username</div>
+        <div class="divTableHead">Groups(Count)</div>
+        <div class="divTableHead">Actions</div>
+      </div>
+    </div>
+    <div class="divTableBody">
+      {% for user in users %}
+      <div class="divTableRow">
+        <div class="divTableCell">{{ user.id }}</div>
+        <div class="divTableCell">{{ user.username }}</div>
+        <div class="divTableCell">{{ user.group.all.count }}</div>
+        <div class="divTableCell">
+            <a class="main" href="{% url 'edit user' user.id %}">Edit user</a>
+            <a class="main" href="{% url 'delete user' user.id %}">Delete user</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

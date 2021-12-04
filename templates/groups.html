@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Groups
+{% endblock %}
+
+{% block content %}
+  <!-- Button add group -->
+  <div class='container'>
+    <div class="align-right">
+        <a class="custom" href="{% url 'add group' %}">Add group</a>
+    </div>
+  </div>
+  <!-- Table group -->
+  <div class="divTable greyGridTable">
+    <div class="divTableHeading">
+      <div class="divTableRow">
+        <div class="divTableHead">ID</div>
+        <div class="divTableHead">Name</div>
+        <div class="divTableHead">Description</div>
+        <div class="divTableHead">Actions</div>
+      </div>
+    </div>
+    <div class="divTableBody">
+      {% for group in groups %}
+      <div class="divTableRow">
+        <div class="divTableCell">{{ group.id }}</div>
+        <div class="divTableCell">{{ group.name }}</div>
+        <div class="divTableCell">{{ group.description }}</div>
+        <div class="divTableCell">
+            <a class="main" href="{% url 'edit group' group.id %}">Edit group</a>
+            <a class="main" href="{% url 'delete group' group.id %}">Delete group</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if user_form %} Add New User {% else %} Add New Group {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class='container' id="form">
+  <form action="" method="post">
+      {% csrf_token %}
+      <!-- User form -->
+      {% if user_form %}
+        <div class="form-title">Add user</div>
+        {% for field in user_form %}
+          <div class="row">
+            {{ field.name }}
+          </div>
+          <div class="row">
+            {{ field }}
+          </div>
+        {% endfor %}
+      <!-- Group form -->
+      {% else %}
+        <div class="form-title">Add group</div>
+        {% for field in group_form %}
+          <div class="row">
+           {{ field.name }}
+          </div>
+          <div class="row">
+            {{ field }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      <div class="row" style="padding-top: 18px;">
+        <input type="submit" value="Submit">
+      </div>
+  </form>
+</div>
+{% endblock %}
